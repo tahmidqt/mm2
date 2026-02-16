@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Infinite Love Explosion 💖✨</title>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #ffd6f0, #ffc2e6, #ffb3dd);
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    overflow: hidden;
+    text-align: center;
+    transition: background 3s ease;
+}
+
+.container {
+    background: white;
+    padding: 80px;
+    border-radius: 50px;
+    box-shadow: 0 25px 80px rgba(255, 0, 150, 0.5);
+    width: 750px;
+    max-width: 95%;
+    position: relative;
+    z-index: 10;
+    transition: transform 1s ease;
+}
+
+h1 {
+    color: #ff1493;
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+button {
+    padding: 20px 50px;
+    font-size: 24px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
+    color: white;
+    cursor: pointer;
+    transition: 0.4s;
+    box-shadow: 0 15px 35px rgba(255, 20, 147, 0.5);
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.bar-container {
+    margin-top: 50px;
+    width: 100%;
+    height: 80px;
+    background: #ffe6f5;
+    border-radius: 50px;
+    overflow: visible;
+    display: none;
+    position: relative;
+    border: 5px solid #ff69b4;
+}
+
+.bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ff1493, #ff69b4, #ff85c1);
+    border-radius: 50px;
+    transition: width 4s cubic-bezier(.68,-0.55,.27,1.55);
+    box-shadow: 0 0 40px #ff69b4;
+}
+
+.label {
+    margin-top: 25px;
+    font-size: 28px;
+    color: #ff1493;
+    font-weight: bold;
+    display: none;
+}
+
+.crack {
+    border: 8px dashed #ff1493 !important;
+    animation: shake 0.5s infinite alternate;
+}
+
+@keyframes shake {
+    from { transform: translateX(-6px); }
+    to { transform: translateX(6px); }
+}
+
+.heart, .sparkle {
+    position: absolute;
+    pointer-events: none;
+}
+
+.heart {
+    animation: floatUp 8s linear forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-1000px) scale(1.8); opacity: 0; }
+}
+
+.sparkle {
+    animation: sparkleFloat 10s linear forwards;
+}
+
+@keyframes sparkleFloat {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-1200px); opacity: 0; }
+}
+
+.love-flood {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(to top, rgba(255,20,147,0.5), rgba(255,105,180,0.3));
+    animation: floodRise 10s forwards;
+    z-index: 1;
+}
+
+@keyframes floodRise {
+    from { height: 0%; }
+    to { height: 100%; }
+}
+
+.glow {
+    animation: glowPulse 3s infinite alternate;
+}
+
+@keyframes glowPulse {
+    from { box-shadow: 0 0 30px #ff69b4; }
+    to { box-shadow: 0 0 80px #ff1493; }
+}
+</style>
+</head>
+<body>
+
+<div class="container glow" id="container">
+    <h1 id="message">Click to see how much I love you 💖🥰✨</h1>
+    <button onclick="nextStep()">Click Me 💕💘</button>
+
+    <div class="bar-container" id="barContainer">
+        <div class="bar" id="loveBar"></div>
+    </div>
+    <div class="label" id="label">This is how much I love you 💞💓💗💖💘</div>
+</div>
+
+<script>
+let step = 0;
+
+function nextStep() {
+    const message = document.getElementById("message");
+    const barContainer = document.getElementById("barContainer");
+    const loveBar = document.getElementById("loveBar");
+    const label = document.getElementById("label");
+    const container = document.getElementById("container");
+
+    if (step === 0) {
+        message.innerText = "Click again my love 🥺💗✨";
+        step++;
+    } 
+    else if (step === 1) {
+        message.innerText = "Okay… but it might overflow 😳💞";
+        barContainer.style.display = "block";
+        label.style.display = "block";
+
+        setTimeout(() => {
+            loveBar.style.width = "400%"; // EVEN BIGGER 💥
+            barContainer.classList.add("crack");
+            startEffects();
+        }, 500);
+
+        step++;
+    }
+}
+
+function startEffects() {
+
+    // Heart rain 💖
+    for (let i = 0; i < 120; i++) {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = ["💖","💘","💗","💓","💞","💕"][Math.floor(Math.random()*6)];
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = window.innerHeight + "px";
+        heart.style.fontSize = (Math.random() * 50 + 20) + "px";
+        heart.style.animationDuration = (Math.random() * 5 + 6) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 10000);
+    }
+
+    // Sparkles ✨
+    for (let i = 0; i < 80; i++) {
+        let sparkle = document.createElement("div");
+        sparkle.classList.add("sparkle");
+        sparkle.innerHTML = "✨";
+        sparkle.style.left = Math.random() * window.innerWidth + "px";
+        sparkle.style.top = window.innerHeight + "px";
+        sparkle.style.fontSize = (Math.random() * 30 + 15) + "px";
+        document.body.appendChild(sparkle);
+
+        setTimeout(() => sparkle.remove(), 10000);
+    }
+
+    // Love flood 🌊💗
+    let flood = document.createElement("div");
+    flood.classList.add("love-flood");
+    document.body.appendChild(flood);
+
+    // Dramatic background shift 💕
+    document.body.style.background = "radial-gradient(circle, #ff9edb, #ff69b4, #ff1493)";
+}
+</script>
+
+</body>
+</html>
